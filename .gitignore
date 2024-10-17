@@ -60,3 +60,7 @@ env/
 
 # macOS system files
 .DS_Store
+
+# excel files
+.xlsx
+.csv

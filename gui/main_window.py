@@ -18,7 +18,7 @@ from xlsx import xlsx_export as ex
 
 
 class Ui_MainWindow(object):
-    product_lists: List[p.Product]
+    product_lists: list
 
     def __init__(self):
         super().__init__()
@@ -134,22 +134,21 @@ class Ui_MainWindow(object):
         row = 0
         self.tableWidget.setRowCount(len(product_list))
         for product in product_list:
-            self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(product.name))
-            self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(str(product.price)))
-            self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(str(product.salvage_value)))
-            self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(product.asset_class.value))
-            self.tableWidget.setItem(row, 4, QtWidgets.QTableWidgetItem(str(product.depreciation_amount)))
+            self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(product.get_name()))
+            self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(str(product.get_price())))
+            self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(str(product.get_salvage_value())))
+            self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(product.get_asset_class()))
+            self.tableWidget.setItem(row, 4, QtWidgets.QTableWidgetItem(str(product.get_depreciation_amount())))
             row += 1
 
     def load_data(self):
-
         self.tableWidget.setRowCount(len(self.product_lists))  # Set row count based on product_lists
         for row, product in enumerate(self.product_lists):
-            self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(product.name))
-            self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(str(product.price)))
-            self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(str(product.salvage_value)))
-            self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(product.asset_class.value))
-            self.tableWidget.setItem(row, 4, QtWidgets.QTableWidgetItem(str(product.depreciation_amount)))
+            self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(product.get_name()))
+            self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(str(product.get_price())))
+            self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(str(product.get_salvage_value())))
+            self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(product.get_asset_class()))
+            self.tableWidget.setItem(row, 4, QtWidgets.QTableWidgetItem(str(product.get_depreciation_amount())))
 
     def change_column_size(self):
         self.tableWidget.setColumnWidth(0, 100)
